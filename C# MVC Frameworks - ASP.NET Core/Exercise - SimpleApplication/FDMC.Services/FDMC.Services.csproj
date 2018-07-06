@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FDMC.Data\FDMC.Data.csproj" />
+    <ProjectReference Include="..\FDMC.Models\FDMC.Models.csproj" />
+  </ItemGroup>
+
+</Project>
