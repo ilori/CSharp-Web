@@ -1,0 +1,39 @@
+﻿@page
+@using Models
+@model IndexModel
+<h1 class="mt-3">All Books</h1>
+
+<div class="mt-4">
+    <table class="table-dark table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Book book in Model.Books)
+        {
+            <tr>
+                <td>
+                    <a class="text-warning" asp-page="Books/Details" asp-route-id="@book.Id">@book.Title</a>
+                </td>
+                <td>
+                    <a class="text-primary" asp-page="Authors/Details" asp-route-id="@book.AuthorId">@book.Author.Name</a>
+                </td>
+                <td>
+                    @if (book.Status)
+                    {
+                        <div class="text-success">At Home</div>
+                    }
+                    else
+                    {
+                        <div class="text-danger">Borrowed</div>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

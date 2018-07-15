@@ -1,0 +1,15 @@
+﻿@page "{id:int?}"
+@using Library.Models
+@model DetailsModel
+
+<h1 class="mt-4">@Model.Author.Name</h1>
+<ul>
+    @foreach (Book book in Model.Author.Books)
+    {
+        <li>
+            <h3>
+                <a class="@(book.Status ? "text-success" : "text-danger")" asp-page="/Books/Details" asp-route-id="@book.Id">@book.Title</a> (@(book.Status ? "At Home" : "Borrowed"))
+            </h3>
+        </li>
+    }
+</ul>

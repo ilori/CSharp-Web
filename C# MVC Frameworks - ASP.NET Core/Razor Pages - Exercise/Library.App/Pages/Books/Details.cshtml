@@ -1,0 +1,29 @@
+﻿@page "{id:int?}"
+@model DetailsModel
+<div class="row mt-5">
+    <div class="col-md-3">
+        <img width="360" height="450" src="@Model.Book.CoverImage" alt="@Model.Book.Title"/>
+    </div>
+    <div class="col-md-4 offset-2">
+        <h1>@Model.Book.Title</h1>
+        <h5>by @Model.Book.Author.Name</h5>
+        <p>"@Model.Book.Description"</p>
+        @if (@Model.Book.Status)
+        {
+            <p>
+                <b>Status: </b><span class="text-success">At Home</span>
+            </p>
+            <a asp-page="/Books/Borrow" asp-route-id="@Model.Book.Id" class="btn btn-success">Borrow</a>
+            <a asp-page="/Books/Status" asp-route-id="@Model.Book.Id" class="btn btn-primary">Book Status</a>
+            <a asp-page="/Index" class="btn btn-info">Cancel</a>
+        }
+        else
+        {
+            <p>
+                <b>Status: </b><span class="text-danger">Borrowed</span>
+            </p>
+            <a asp-page="/Books/Return" asp-route-id="@Model.Book.Id" class="btn btn-warning">Return Book</a>
+            <a asp-page="/Books/Status" asp-route-id="@Model.Book.Id" class="btn btn-primary">Book Status</a>
+        }
+    </div>
+</div>

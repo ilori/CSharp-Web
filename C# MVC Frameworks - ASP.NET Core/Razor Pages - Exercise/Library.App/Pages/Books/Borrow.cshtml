@@ -1,0 +1,62 @@
+﻿@page "{id:int?}"
+@model BorrowModel
+
+<div class="row">
+    <div class="col-md-4">
+        <a asp-page="/Books/Details" asp-route-id="@Model.Book.Id">
+            <h2 class="text-primary">Borrow @Model.Book.Title</h2>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <h4>
+            <small>by </small>
+            <a asp-page="/Authors/Details" asp-route-id="@Model.Book.AuthorId">
+                <small class="text-success">@Model.Book.Author.Name</small>
+            </a>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <img width="290" src="@Model.Book.CoverImage" alt="@Model.Book.Title"/>
+    </div>
+    <form method="post" class="col-md-4 offset-1">
+        @if (Model.ModelState.ContainsKey("error"))
+        {
+            <div class="alert alert-danger text-center">
+                @Model.ModelState["error"].Errors.First().ErrorMessage
+            </div>
+        }
+        <div class="form-group row">
+            <label asp-for="BorrowDate" class="col-sm-5 col-form-label">
+                <b>Borrow Date</b>
+            </label>
+            <div class="col-sm-7">
+                <input asp-for="BorrowDate" type="text" class="form-control" value="@DateTime.Today.ToString("dd-MM-yyyy")" placeholder="dd-MM-yyyy">
+                <span asp-validation-for="BorrowDate" class="text-danger text-center"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="ReturnDate" class="col-sm-5 col-form-label">
+                <b>Return Date</b>
+            </label>
+            <div class="col-sm-7">
+                <input asp-for="ReturnDate" type="text" class="form-control" placeholder="dd-MM-yyyy">
+                <span asp-validation-for="ReturnDate" class="text-danger text-center"></span>
+            </div>
+        </div>
+        <select asp-for="Borrower" asp-items="@Model.Borrowers" class="custom-select col-md-12"></select>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-success" name="name" value="Submit"/>
+            </div>
+            <div>
+                <a asp-page="/Index" class="btn btn-info">
+                    Cancel
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+﻿@page
+@using Library.Models
+@model SearchModel
+@if (Model.Books.Any() || Model.Authors.Any())
+{
+    <h1 class="mt-4">
+        Search results: <span class="text-success">"@Model.SearchTerm"</span>
+    </h1>
+    <ul>
+        @foreach (Author author in Model.Authors)
+        {
+            <li>
+                <h4>
+                    <a asp-page="/Authors/Details" asp-route-id="@author.Id">
+                        <search search-term="@Model.SearchTerm">@author.Name</search>
+                    </a> (author)
+                </h4>
+            </li>
+        }
+        @foreach (Book book in Model.Books)
+        {
+            <li>
+                <h4>
+                    <a asp-page="/Books/Details" asp-route-id="@book.Id">
+                        <search search-term="@Model.SearchTerm">@book.Title</search>
+                    </a> (book)
+                </h4>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h1 class="mt-4">No results found for: <span class="text-danger">"@Model.SearchTerm"</span></h1>
+}

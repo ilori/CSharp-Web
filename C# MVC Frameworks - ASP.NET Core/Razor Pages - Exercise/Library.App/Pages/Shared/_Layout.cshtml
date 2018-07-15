@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Library</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lumen.css"/>
+        <link rel="stylesheet" href="~/lib/fonts/css/all.css"/>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
+    </environment>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+    <div class="container">
+        <a class="navbar-brand" asp-page="/Index">MyLibrary</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item">
+                    <a class="nav-link " asp-page="/Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " asp-page="/Books/Add">Add Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " asp-page="/Borrowers/Add">Add Borrower</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input name="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button asp-page="/Search" class="btn btn-dark my-2 my-sm-0" type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    @RenderBody()
+    <hr/>
+    <footer >
+        <p>&copy; 2018 - MyLibrary</p>
+    </footer>
+</div>
+
+<environment include="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</environment>
+<environment exclude="Development">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+    </script>
+</environment>
+@RenderSection("Scripts", required: false)
+</body>
+</html>
