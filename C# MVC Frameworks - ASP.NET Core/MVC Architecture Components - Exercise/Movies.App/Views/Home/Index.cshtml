@@ -1,0 +1,29 @@
+﻿@using Movies.Models
+@model IEnumerable<Movie>
+<div class="container py-5 mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (Movie movie in @Model)
+                {
+                    <div class="col-md-3 mx-auto">
+                        <div class="card card-block mx-auto rounded-0 border-0">
+                            <div class="card-header border-bottom-0 card-block">
+                                <h2 class="mb-2 text-center">
+                                    <a class="@(movie.Status ? "text-success" : "text-primary")" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                                        @movie.Title
+                                    </a>
+                                </h2>
+                            </div>
+                            <div class="card-body card-block">
+                                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                                    <img width="207" src="@movie.CoverImageUrl" alt="Movie Title @movie.Title"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

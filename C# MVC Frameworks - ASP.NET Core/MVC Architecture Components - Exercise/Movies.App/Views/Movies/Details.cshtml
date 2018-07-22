@@ -1,0 +1,55 @@
+﻿@using Movies.App.Models.ViewModels
+@model MovieDetailsViewModel
+
+<div class="row justify-content-center mt-5">
+    <div>
+        @if (Model.YouTubeVideo != null)
+        {
+            <iframe showinfo="0" allowfullscreen src="https://www.youtube.com/embed/@Model.YouTubeVideo" height="600" width="1109"></iframe>
+        }
+        else
+        {
+            if (@Model.CoverImage != null)
+            {
+                <img width="450" class="text-white" src="@Model.CoverImage" alt="@Model.Title Cover Image"/>
+            }
+        }
+    </div>
+</div>
+<div class="row justify-content-center mt-4">
+    <div>
+        <h4 class="text-white">Title : <a asp-controller="Movies" asp-action="History" asp-route-id="@Model.MovieId" class="@(@Model.Status ? "text-success" : "text-primary")">@Model.Title</a></h4>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div>
+        <h4 class="text-white">Director : <a asp-controller="Directors" asp-action="Details" asp-route-id="@Model.DirectorId">@Model.Director</a></h4>
+    </div>
+</div>
+@if (string.IsNullOrWhiteSpace(Model.Description) == false)
+{
+    <div class="row justify-content-center">
+        <h4 class="text-white">Description</h4>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <p class="text-white text-center">@Model.Description</p>
+        </div>
+    </div>
+}
+@if (Model.Status)
+{
+    <div class="row justify-content-center mt-3">
+        <a asp-controller="Movies" asp-action="Rent" asp-route-id="@Model.MovieId" class="btn btn-success">Rent Movie</a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-info ml-2">Cancel</a>
+
+    </div>
+}
+else
+{
+    <div class="row justify-content-center mt-3">
+        <div class="btn btn-primary" disabled>Movie Unavailable</div>
+        <a asp-controller="Movies" asp-action="Return" asp-route-id="@Model.MovieId" class="btn btn-secondary ml-2">Return Movie</a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-info ml-2">Cancel</a>
+    </div>
+}

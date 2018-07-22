@@ -1,0 +1,39 @@
+﻿@using Movies.Models
+@model Movie
+
+<div class="row mt-5">
+    <div class="col-5 mt-4">
+        <img width="350" src="@Model.CoverImageUrl" alt="Img"/>
+    </div>
+    <div class="col-6 mt-4">
+        <table class="table table-light">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Borrower</th>
+                <th scope="col">Rent Date</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (History history in @Model.Histories)
+            {
+                <tr>
+                    <td>
+                        <b>@history.BorrowerName</b>
+                    </td>
+                    <td>
+                        <b>@history.BorrowDate.ToShortDateString()</b>
+                    </td>
+                    <td>
+                        <b>@(history.ReturnDate == null ? "Rented Indefinitely" : @history.ReturnDate.Value.ToShortDateString())</b>
+                    </td>
+                    <td class="@(@Model.Status ? "text-success" : "text-primary")">
+                        <b>@(@Model.Status ? "Available" : "Unavailable")</b>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

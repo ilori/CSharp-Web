@@ -1,0 +1,17 @@
+﻿body {
+    background-attachment: fixed !important;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+.btn-custom {
+    background-color: black !important;
+    color: white !important;
+}
+
+.btn-custom:hover {
+    background-color: #7715d3 !important;
+    color: yellow !important;
+}
+
+.card-block { background-color: rgba(245, 245, 245, 0) !important; }

@@ -1,0 +1,34 @@
+﻿@using Movies.Models
+@model Movies.App.Models.ViewModels.SearchViewModel
+@if (Model.Movies.Any() || Model.Directors.Any())
+{
+    <h1 class="mt-4 text-white">
+        Search results for : <span class="text-primary">"@Model.SearchTerm"</span>
+    </h1>
+    <ul>
+        @foreach (Director director in Model.Directors)
+        {
+            <li class="text-white">
+                <h4>
+                    <a class="text-success" asp-controller="Directors"  asp-action="Details" asp-route-id="@director.Id">
+                        <search search-term="@Model.SearchTerm">@director.Name</search>
+                    </a> (director)
+                </h4>
+            </li>
+        }
+        @foreach (Movie movie in Model.Movies)
+        {
+            <li class="text-white">
+                <h4>
+                    <a class="text-success" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                        <search search-term="@Model.SearchTerm">@movie.Title</search>
+                    </a> (movie)
+                </h4>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h1 class="mt-4 text-white">No results found for: <span class="text-primary">"@Model.SearchTerm"</span></h1>
+}

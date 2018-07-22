@@ -1,0 +1,14 @@
+﻿@using Movies.Models
+@model Director
+
+<h1 class="text-success mt-5">
+    @Model.Name Movies
+</h1>
+<ul>
+    @foreach (Movie movie in @Model.Movies)
+    {
+        <li class="@(movie.Status ? "text-success" : "text-primary")">
+            <a class="@(movie.Status ? "text-success" : "text-primary")" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
+        </li>
+    }
+</ul>
